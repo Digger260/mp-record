@@ -1,0 +1,7 @@
+---
+name: "Dr Beccy Cooper"
+party: "Labour"
+constituency: "Worthing West"
+mp_since: "2024-07-04"
+parliament_id: 5307
+---
