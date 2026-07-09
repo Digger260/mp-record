@@ -4,4 +4,5 @@ party: "Labour (Co-op)"
 constituency: "Warrington South"
 mp_since: "2024-07-04"
 parliament_id: 5154
+ipsa_slug: "sarah-hall"
 ---

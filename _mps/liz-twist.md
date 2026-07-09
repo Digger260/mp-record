@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Blaydon and Consett"
 mp_since: "2017-06-08"
 parliament_id: 4618
+ipsa_slug: "liz-twist"
 ---

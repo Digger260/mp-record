@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Chesterfield"
 mp_since: "2010-05-06"
 parliament_id: 3952
+ipsa_slug: "toby-perkins"
 ---

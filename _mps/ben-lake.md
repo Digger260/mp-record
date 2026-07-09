@@ -4,4 +4,5 @@ party: "Plaid Cymru"
 constituency: "Ceredigion Preseli"
 mp_since: "2017-06-08"
 parliament_id: 4630
+ipsa_slug: "ben-lake"
 ---

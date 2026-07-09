@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Gloucester"
 mp_since: "2024-07-04"
 parliament_id: 5349
+ipsa_slug: "alex-mcintyre"
 ---

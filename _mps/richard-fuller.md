@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "North Bedfordshire"
 mp_since: "2019-12-12"
 parliament_id: 3912
+ipsa_slug: "richard-fuller"
 ---

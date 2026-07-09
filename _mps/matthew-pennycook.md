@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Greenwich and Woolwich"
 mp_since: "2015-05-07"
 parliament_id: 4520
+ipsa_slug: "matthew-pennycook"
 ---

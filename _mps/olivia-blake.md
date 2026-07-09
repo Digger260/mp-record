@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Sheffield Hallam"
 mp_since: "2019-12-12"
 parliament_id: 4864
+ipsa_slug: "olivia-blake"
 ---

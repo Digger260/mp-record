@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Ayr, Carrick and Cumnock"
 mp_since: "2024-07-04"
 parliament_id: 5206
+ipsa_slug: "elaine-stewart"
 ---

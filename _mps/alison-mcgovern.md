@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Birkenhead"
 mp_since: "2010-05-06"
 parliament_id: 4083
+ipsa_slug: "alison-mcgovern"
 ---

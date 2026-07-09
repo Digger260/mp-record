@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Broxtowe"
 mp_since: "2024-07-04"
 parliament_id: 5058
+ipsa_slug: "juliet-campbell"
 ---

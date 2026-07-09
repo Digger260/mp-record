@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Wolverhampton West"
 mp_since: "2024-07-04"
 parliament_id: 5230
+ipsa_slug: "warinder-juss"
 ---

@@ -4,4 +4,5 @@ party: "Labour (Co-op)"
 constituency: "Midlothian"
 mp_since: "2024-07-04"
 parliament_id: 5114
+ipsa_slug: "kirsty-mcneill"
 ---

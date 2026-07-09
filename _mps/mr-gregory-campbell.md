@@ -4,4 +4,5 @@ party: "Democratic Unionist Party"
 constituency: "East Londonderry"
 mp_since: "2001-06-07"
 parliament_id: 1409
+ipsa_slug: "gregory-campbell"
 ---

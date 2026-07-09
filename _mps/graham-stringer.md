@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Blackley and Middleton South"
 mp_since: "1997-05-01"
 parliament_id: 449
+ipsa_slug: "graham-stringer"
 ---

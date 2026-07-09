@@ -4,4 +4,5 @@ party: "Green Party"
 constituency: "Bristol Central"
 mp_since: "2024-07-04"
 parliament_id: 5102
+ipsa_slug: "carla-denyer"
 ---

@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "Melton and Syston"
 mp_since: "2015-05-07"
 parliament_id: 4362
+ipsa_slug: "edward-argar"
 ---

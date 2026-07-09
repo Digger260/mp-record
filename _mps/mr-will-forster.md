@@ -4,4 +4,5 @@ party: "Liberal Democrat"
 constituency: "Woking"
 mp_since: "2024-07-04"
 parliament_id: 5322
+ipsa_slug: "will-forster"
 ---

@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Leicester West"
 mp_since: "2010-05-06"
 parliament_id: 4026
+ipsa_slug: "liz-kendall"
 ---

@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Holborn and St Pancras"
 mp_since: "2015-05-07"
 parliament_id: 4514
+ipsa_slug: "keir-starmer"
 ---

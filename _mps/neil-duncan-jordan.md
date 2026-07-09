@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Poole"
 mp_since: "2024-07-04"
 parliament_id: 5359
+ipsa_slug: "neil-duncan-jordan"
 ---

@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "Christchurch"
 mp_since: "1997-05-01"
 parliament_id: 242
+ipsa_slug: "christopher-chope"
 ---

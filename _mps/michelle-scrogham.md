@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Barrow and Furness"
 mp_since: "2024-07-04"
 parliament_id: 5049
+ipsa_slug: "michelle-scrogham"
 ---

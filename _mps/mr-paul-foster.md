@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "South Ribble"
 mp_since: "2024-07-04"
 parliament_id: 5074
+ipsa_slug: "paul-foster"
 ---

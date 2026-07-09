@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "South Holland and The Deepings"
 mp_since: "1997-05-01"
 parliament_id: 350
+ipsa_slug: "john-hayes"
 ---

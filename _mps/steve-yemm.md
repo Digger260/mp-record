@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Mansfield"
 mp_since: "2024-07-04"
 parliament_id: 5194
+ipsa_slug: "steve-yemm"
 ---

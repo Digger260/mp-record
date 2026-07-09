@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Dartford"
 mp_since: "2024-07-04"
 parliament_id: 5223
+ipsa_slug: "jim-dickson"
 ---

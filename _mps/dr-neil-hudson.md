@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "Epping Forest"
 mp_since: "2019-12-12"
 parliament_id: 4853
+ipsa_slug: "neil-hudson"
 ---

@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Worthing West"
 mp_since: "2024-07-04"
 parliament_id: 5307
+ipsa_slug: "beccy-cooper"
 ---

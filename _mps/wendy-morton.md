@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "Aldridge-Brownhills"
 mp_since: "2015-05-07"
 parliament_id: 4358
+ipsa_slug: "wendy-morton"
 ---

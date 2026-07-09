@@ -4,4 +4,5 @@ party: "Plaid Cymru"
 constituency: "Ynys Môn"
 mp_since: "2024-07-04"
 parliament_id: 5085
+ipsa_slug: "llinos-medi"
 ---

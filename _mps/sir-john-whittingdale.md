@@ -4,4 +4,5 @@ party: "Conservative"
 constituency: "Maldon"
 mp_since: "1992-04-09"
 parliament_id: 39
+ipsa_slug: "john-whittingdale"
 ---

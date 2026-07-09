@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Darlington"
 mp_since: "2024-07-04"
 parliament_id: 5037
+ipsa_slug: "lola-mcevoy"
 ---

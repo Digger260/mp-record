@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Ealing Southall"
 mp_since: "2024-07-04"
 parliament_id: 5075
+ipsa_slug: "deirdre-costigan"
 ---

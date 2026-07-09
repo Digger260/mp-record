@@ -4,4 +4,5 @@ party: "Liberal Democrat"
 constituency: "Kingston and Surbiton"
 mp_since: "2017-06-08"
 parliament_id: 188
+ipsa_slug: "ed-davey"
 ---

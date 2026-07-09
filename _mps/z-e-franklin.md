@@ -4,4 +4,5 @@ party: "Liberal Democrat"
 constituency: "Guildford"
 mp_since: "2024-07-04"
 parliament_id: 5313
+ipsa_slug: "z-e-franklin"
 ---

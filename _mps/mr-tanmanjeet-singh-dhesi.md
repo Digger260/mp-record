@@ -4,4 +4,5 @@ party: "Labour"
 constituency: "Slough"
 mp_since: "2017-06-08"
 parliament_id: 4638
+ipsa_slug: "tanmanjeet-singh-dhesi"
 ---
