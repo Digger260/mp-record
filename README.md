@@ -1,5 +1,7 @@
 # MP Public Record Directory
 
+https://digger260.github.io/mp-record/
+
 A read-only signposting site for UK Members of Parliament. For every current MP, it collects direct links to their **official public records** in one place:
 
 - Parliament profile and voting record (members.parliament.uk)
