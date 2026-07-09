@@ -8,7 +8,7 @@ title: MP Record — every MP, every record, one search
   <p class="lede">Voting history, registered financial interests, donations, and expenses for all 650 Members of Parliament — linked directly to the official sources. Nothing added, nothing edited.</p>
   <div class="search-wrap">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-    <input type="search" id="mp-search" placeholder="Search by name, party, or constituency…" autocomplete="off" aria-label="Search MPs">
+    <input type="search" id="mp-search" placeholder="Search by name, party, constituency, or postcode…" autocomplete="off" aria-label="Search MPs">
   </div>
   <div class="result-line">
     <p id="mp-count" aria-live="polite"></p>
@@ -19,7 +19,7 @@ title: MP Record — every MP, every record, one search
 <ul class="mp-grid" id="mp-list">
 {% assign sorted = site.mps | sort: "name" %}
 {% for mp in sorted %}{% unless mp.name == "" %}
-  <li data-search="{{ mp.name | downcase }} {{ mp.party | downcase }} {{ mp.constituency | downcase }}" data-party="{{ mp.party }}">
+  <li data-search="{{ mp.name | downcase }} {{ mp.party | downcase }} {{ mp.constituency | downcase }}" data-party="{{ mp.party }}" data-constituency="{{ mp.constituency | downcase }}">
     <a class="mp-card" href="{{ mp.url | relative_url }}">
       <span class="name"><span class="dot" aria-hidden="true"></span>{{ mp.name }}</span>
       <span class="meta">{{ mp.party }} · {{ mp.constituency }}</span>
@@ -81,8 +81,32 @@ title: MP Record — every MP, every record, one search
     chipsWrap.appendChild(btn);
   });
 
+  var POSTCODE = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
+  var postcodeResult = null;   // { postcode, constituency } for the current lookup
+  var lookupTimer = null;
+
+  function render(shown, label) {
+    count.textContent = label || (shown + " of " + items.length + " MPs");
+    empty.style.display = shown ? "none" : "block";
+  }
+
   function update() {
     var q = input.value.trim().toLowerCase();
+
+    if (POSTCODE.test(q)) {
+      var compact = q.replace(/\s+/g, "");
+      if (postcodeResult && postcodeResult.postcode === compact) {
+        showConstituency(postcodeResult.constituency);
+      } else {
+        clearTimeout(lookupTimer);
+        render(items.length, "Looking up postcode\u2026");
+        items.forEach(function (li) { li.style.display = "none"; });
+        lookupTimer = setTimeout(function () { lookupPostcode(compact); }, 350);
+      }
+      return;
+    }
+
+    postcodeResult = null;
     var shown = 0;
     items.forEach(function (li) {
       var match = (!q || li.dataset.search.indexOf(q) !== -1) &&
@@ -90,9 +114,41 @@ title: MP Record — every MP, every record, one search
       li.style.display = match ? "" : "none";
       if (match) shown++;
     });
-    count.textContent = shown + " of " + items.length + " MPs";
-    empty.style.display = shown ? "none" : "block";
+    render(shown);
   }
+
+  function lookupPostcode(compact) {
+    fetch("https://api.postcodes.io/postcodes/" + encodeURIComponent(compact))
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var current = input.value.trim().toLowerCase().replace(/\s+/g, "");
+        if (current !== compact) return;  // user kept typing
+        if (data.status === 200 && data.result && data.result.parliamentary_constituency) {
+          postcodeResult = { postcode: compact, constituency: data.result.parliamentary_constituency.toLowerCase() };
+          showConstituency(postcodeResult.constituency);
+        } else {
+          items.forEach(function (li) { li.style.display = "none"; });
+          render(0, "Postcode not found \u2014 check and try again");
+        }
+      })
+      .catch(function () {
+        render(0, "Postcode lookup unavailable \u2014 try searching by constituency name");
+        items.forEach(function (li) { li.style.display = "none"; });
+      });
+  }
+
+  function showConstituency(constituency) {
+    var shown = 0;
+    items.forEach(function (li) {
+      var match = li.dataset.constituency === constituency ||
+                  li.dataset.constituency.indexOf(constituency) !== -1;
+      li.style.display = match ? "" : "none";
+      if (match) shown++;
+    });
+    render(shown, shown ? "Your MP \u2014 " + (shown === 1 ? "1 result" : shown + " results") : "");
+    if (!shown) render(0, "No MP found for that constituency \u2014 the seat may be vacant");
+  }
+
   input.addEventListener("input", update);
   update();
 })();
