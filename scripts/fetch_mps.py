@@ -17,7 +17,7 @@ from pathlib import Path
 import requests
 
 API = "https://members-api.parliament.uk/api"
-OUT_DIR = Path(__file__).resolve().parent.parent / "_mps"
+OUT_DIR = Path(__file__).resolve().parent.parent / "mps"
 
 
 def slugify(name: str) -> str:
@@ -45,6 +45,11 @@ def fetch_all_current_mps():
 def render(mp: dict) -> str:
     mp_id = mp["id"]
     name = mp["nameDisplayAs"]
+    ipsa = name.lower()
+    for h in ("rt hon ", "sir ", "dame ", "dr ", "mr ", "mrs ", "ms ", "miss "):
+        if ipsa.startswith(h):
+            ipsa = ipsa[len(h):]
+    ipsa = re.sub(r"[^a-z0-9]+", "-", ipsa).strip("-")
     party = (mp.get("latestParty") or {}).get("name", "")
     membership = mp.get("latestHouseMembership") or {}
     constituency = membership.get("membershipFrom", "")
@@ -56,6 +61,7 @@ party: "{party}"
 constituency: "{constituency}"
 mp_since: "{since}"
 parliament_id: {mp_id}
+ipsa_slug: "{ipsa}"
 ---
 """
 
