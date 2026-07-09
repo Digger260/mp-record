@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.name %}{{ page.name }} · {{ site.title }}{% else %}{{ page.title | default: site.title }}{% endif %}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-head">
+    <a class="wordmark" href="{{ '/' | relative_url }}">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="3" height="11" rx="1.2"/><rect x="8.5" y="5" width="3" height="16" rx="1.2"/><rect x="14" y="8" width="3" height="13" rx="1.2"/><rect x="19" y="3" width="3" height="18" rx="1.2"/></svg>
+      <span>MP&nbsp;Record</span>
+    </a>
+    <nav class="site-nav">
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer class="site-foot">
+    <p>Every link on this site points to records published by Parliament, regulators, and government bodies. This site adds no commentary and accepts no submissions.</p>
+    <p class="foot-meta">Generated from the <a href="https://members-api.parliament.uk/">UK Parliament Members API</a>.</p>
+  </footer>
+</body>
+</html>

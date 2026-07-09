@@ -1,0 +1,92 @@
+---
+layout: default
+---
+{% assign q = page.name | url_encode %}
+<p class="crumb"><a href="{{ '/' | relative_url }}">&larr; All MPs</a></p>
+<header class="mp-head">
+  <p class="eyebrow">Member of Parliament</p>
+  <h1>{{ page.name }}</h1>
+  <div class="meta">
+    <span class="party-pill" data-party="{{ page.party }}"><span class="dot" aria-hidden="true"></span>{{ page.party }}</span>
+    <span>{{ page.constituency }}</span>
+    {% if page.mp_since != "" %}<span>· in seat since {{ page.mp_since }}</span>{% endif %}
+  </div>
+</header>
+
+<p class="eyebrow records-label">Official records</p>
+<div class="record-grid">
+  <a class="record-card" href="https://members.parliament.uk/member/{{ page.parliament_id }}">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Profile</span>
+    <span class="title">Parliament profile</span>
+    <span class="desc">Official biography, roles, and contact details</span>
+  </a>
+  <a class="record-card" href="https://members.parliament.uk/member/{{ page.parliament_id }}/voting">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Votes</span>
+    <span class="title">Voting record</span>
+    <span class="desc">Every recorded division, from Parliament itself</span>
+  </a>
+  <a class="record-card" href="https://members.parliament.uk/member/{{ page.parliament_id }}/registeredinterests">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Interests</span>
+    <span class="title">Registered financial interests</span>
+    <span class="desc">Second jobs, gifts, and paid roles they must declare</span>
+  </a>
+  <a class="record-card" href="https://hansard.parliament.uk/search/MemberContributions?memberId={{ page.parliament_id }}">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Hansard</span>
+    <span class="title">Contributions in Parliament</span>
+    <span class="desc">Speeches and written questions, word for word</span>
+  </a>
+  <a class="record-card" href="https://www.theyworkforyou.com/search/?q={{ q }}">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Analysis</span>
+    <span class="title">TheyWorkForYou</span>
+    <span class="desc">Independent voting summaries by mySociety</span>
+  </a>
+  <a class="record-card" href="https://search.electoralcommission.org.uk/Search/Donations?currentPage=1&rows=20&query={{ q }}&sort=AcceptedDate&order=desc&et=pp&et=ppm&et=tp&et=perpar&et=rd">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Donations</span>
+    <span class="title">Electoral Commission</span>
+    <span class="desc">Declared donations and loans, searchable register</span>
+  </a>
+  <a class="record-card" href="https://www.theipsa.org.uk/mp-staffing-business-costs/your-mp">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Expenses</span>
+    <span class="title">IPSA business costs</span>
+    <span class="desc">Staffing and office costs, published by the regulator</span>
+  </a>
+  <a class="record-card" href="https://find-and-update.company-information.service.gov.uk/search/officers?q={{ q }}">
+    <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <span class="tag">Companies</span>
+    <span class="title">Companies House</span>
+    <span class="desc">Officer search — verify identity before relying on results</span>
+  </a>
+</div>
+
+<p class="note">All links open records published by Parliament, regulators, and government bodies. This site adds no commentary. Name-based searches (donations, Companies House) can match people who share the MP's name — always check the record itself.</p>
+
+<script>
+(function () {
+  var PARTY_COLORS = {
+    "labour": "#E4003B", "labour (co-op)": "#E4003B",
+    "conservative": "#0087DC",
+    "liberal democrat": "#FAA61A",
+    "scottish national party": "#FFF95D",
+    "green party": "#6AB023",
+    "reform uk": "#12B6CF",
+    "plaid cymru": "#005B54",
+    "democratic unionist party": "#D46A4C",
+    "sinn féin": "#326760", "sinn fein": "#326760",
+    "social democratic & labour party": "#2AA82C",
+    "alliance": "#F6CB2F",
+    "ulster unionist party": "#48A5EE",
+    "traditional unionist voice": "#0C3A6A",
+    "speaker": "#909090", "independent": "#909090"
+  };
+  var pill = document.querySelector(".party-pill");
+  var c = PARTY_COLORS[(pill.dataset.party || "").toLowerCase()] || "#909090";
+  pill.querySelector(".dot").style.setProperty("background", c);
+})();
+</script>
