@@ -9,6 +9,7 @@ Usage:
     python scripts/fetch_mps.py --refresh  # regenerates every file from the API
 """
 
+import datetime
 import re
 import sys
 import time
@@ -69,9 +70,13 @@ ipsa_slug: "{ipsa}"
 def main():
     refresh = "--refresh" in sys.argv
     OUT_DIR.mkdir(exist_ok=True)
+    mps = list(fetch_all_current_mps())
+    if len(mps) < 400:  # API glitch or Parliament dissolved — don't touch anything
+        print(f"Only {len(mps)} current MPs returned; aborting without changes.")
+        sys.exit(0)
     created = skipped = 0
     written = set()
-    for mp in fetch_all_current_mps():
+    for mp in mps:
         stem = slugify(mp["nameDisplayAs"])
         if stem in written:  # two current MPs share a display name
             stem = f"{stem}-{mp['id']}"
@@ -83,11 +88,24 @@ def main():
         path.write_text(render(mp), encoding="utf-8")
         created += 1
         print(f"wrote {path.name}")
-    if refresh:  # remove pages for MPs no longer serving
+    if refresh:  # mark pages for MPs no longer serving; remove after 12 months
+        today = datetime.date.today()
         for old in OUT_DIR.glob("*.md"):
-            if old.stem not in written:
-                old.unlink()
-                print(f"removed {old.name} (no longer a current MP)")
+            if old.stem in written:
+                continue
+            text = old.read_text(encoding="utf-8")
+            m = re.search(r'departed_since: "(\d{4}-\d{2}-\d{2})"', text)
+            if m:
+                left = datetime.date.fromisoformat(m.group(1))
+                if (today - left).days > 365:
+                    old.unlink()
+                    print(f"removed {old.name} (departed over a year ago)")
+            else:
+                marker = f'departed: true\ndeparted_since: "{today.isoformat()}"\n'
+                parts = text.split("---")
+                parts[1] = parts[1] + marker
+                old.write_text("---".join(parts), encoding="utf-8")
+                print(f"marked {old.name} as departed")
     print(f"\nDone: {created} written, {skipped} skipped (use --refresh to regenerate all).")
 
 
