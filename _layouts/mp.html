@@ -3,8 +3,11 @@ layout: default
 ---
 {% assign q = page.name | url_encode %}
 <p class="crumb"><a href="{{ '/' | relative_url }}">&larr; All MPs</a></p>
+{% if page.departed %}
+<div class="notice">No longer a serving MP &mdash; this seat was vacated{% if page.departed_since %} around {{ page.departed_since }}{% endif %}. The official records linked below remain public.</div>
+{% endif %}
 <header class="mp-head">
-  <p class="eyebrow">Member of Parliament</p>
+  <p class="eyebrow">{% if page.departed %}Former Member of Parliament{% else %}Member of Parliament{% endif %}</p>
   <h1>{{ page.name }}</h1>
   <div class="meta">
     <span class="party-pill" data-party="{{ page.party }}"><span class="dot" aria-hidden="true"></span>{{ page.party }}</span>
