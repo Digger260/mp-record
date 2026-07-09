@@ -17,7 +17,7 @@ from pathlib import Path
 import requests
 
 API = "https://members-api.parliament.uk/api"
-OUT_DIR = Path(__file__).resolve().parent.parent / "mps"
+OUT_DIR = Path(__file__).resolve().parent.parent / "_mps"
 
 
 def slugify(name: str) -> str:
