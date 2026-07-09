@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About · MP Record
+permalink: /about/
 ---
 <div class="prose" markdown="1">
 
