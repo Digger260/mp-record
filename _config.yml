@@ -10,7 +10,7 @@ defaults:
     values:
       layout: default
   - scope:
-      path: "mps"
+      path: "_mps"
     values:
       layout: mp
 exclude:
