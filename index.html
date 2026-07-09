@@ -1,0 +1,99 @@
+---
+layout: default
+title: MP Record — every MP, every record, one search
+---
+<section class="hero">
+  <p class="eyebrow">Public record directory · House of Commons</p>
+  <h1>Every MP. Every record. <em>One search.</em></h1>
+  <p class="lede">Voting history, registered financial interests, donations, and expenses for all 650 Members of Parliament — linked directly to the official sources. Nothing added, nothing edited.</p>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <input type="search" id="mp-search" placeholder="Search by name, party, or constituency…" autocomplete="off" aria-label="Search MPs">
+  </div>
+  <div class="result-line">
+    <p id="mp-count" aria-live="polite"></p>
+  </div>
+  <div class="chips" id="party-chips" role="group" aria-label="Filter by party"></div>
+</section>
+
+<ul class="mp-grid" id="mp-list">
+{% assign sorted = site.mps | sort: "name" %}
+{% for mp in sorted %}{% unless mp.name == "" %}
+  <li data-search="{{ mp.name | downcase }} {{ mp.party | downcase }} {{ mp.constituency | downcase }}" data-party="{{ mp.party }}">
+    <a class="mp-card" href="{{ mp.url | relative_url }}">
+      <span class="name"><span class="dot" aria-hidden="true"></span>{{ mp.name }}</span>
+      <span class="meta">{{ mp.party }} · {{ mp.constituency }}</span>
+    </a>
+  </li>
+{% endunless %}{% endfor %}
+</ul>
+<p class="empty-state" id="empty-state">No MPs match that search. Try a surname, a party, or a constituency — e.g. “Yorkshire”.</p>
+
+<script>
+(function () {
+  var PARTY_COLORS = {
+    "labour": "#E4003B", "labour (co-op)": "#E4003B",
+    "conservative": "#0087DC",
+    "liberal democrat": "#FAA61A",
+    "scottish national party": "#FFF95D",
+    "green party": "#6AB023",
+    "reform uk": "#12B6CF",
+    "plaid cymru": "#005B54",
+    "democratic unionist party": "#D46A4C",
+    "sinn féin": "#326760", "sinn fein": "#326760",
+    "social democratic & labour party": "#2AA82C",
+    "alliance": "#F6CB2F",
+    "ulster unionist party": "#48A5EE",
+    "traditional unionist voice": "#0C3A6A",
+    "speaker": "#909090", "independent": "#909090"
+  };
+  function colorFor(party) {
+    return PARTY_COLORS[(party || "").toLowerCase()] || "#909090";
+  }
+
+  var input = document.getElementById("mp-search");
+  var items = Array.prototype.slice.call(document.querySelectorAll("#mp-list li"));
+  var count = document.getElementById("mp-count");
+  var empty = document.getElementById("empty-state");
+  var chipsWrap = document.getElementById("party-chips");
+  var activeParty = null;
+
+  // Paint party dots
+  items.forEach(function (li) {
+    li.querySelector(".dot").style.setProperty("background", colorFor(li.dataset.party));
+  });
+
+  // Build party chips from the data itself, largest party first
+  var tally = {};
+  items.forEach(function (li) { tally[li.dataset.party] = (tally[li.dataset.party] || 0) + 1; });
+  Object.keys(tally).sort(function (a, b) { return tally[b] - tally[a]; }).forEach(function (party) {
+    var btn = document.createElement("button");
+    btn.className = "chip";
+    btn.type = "button";
+    btn.setAttribute("aria-pressed", "false");
+    btn.innerHTML = '<span class="dot" style="--pc:' + colorFor(party) + '"></span>' + party + " · " + tally[party];
+    btn.addEventListener("click", function () {
+      activeParty = (activeParty === party) ? null : party;
+      chipsWrap.querySelectorAll(".chip").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+      if (activeParty) btn.setAttribute("aria-pressed", "true");
+      update();
+    });
+    chipsWrap.appendChild(btn);
+  });
+
+  function update() {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    items.forEach(function (li) {
+      var match = (!q || li.dataset.search.indexOf(q) !== -1) &&
+                  (!activeParty || li.dataset.party === activeParty);
+      li.style.display = match ? "" : "none";
+      if (match) shown++;
+    });
+    count.textContent = shown + " of " + items.length + " MPs";
+    empty.style.display = shown ? "none" : "block";
+  }
+  input.addEventListener("input", update);
+  update();
+})();
+</script>
