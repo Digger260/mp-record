@@ -1,4 +1,8 @@
 title: MP Record
+url: "https://digger260.github.io"
+baseurl: "/mp-record"
+plugins:
+  - jekyll-sitemap
 description: Every UK MP's official public records — voting history, financial interests, donations, and expenses — in one search.
 collections:
   mps:

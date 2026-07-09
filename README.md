@@ -25,7 +25,7 @@ This repository does not accept pull requests or issues for content. All pages a
    pip install requests
    python scripts/fetch_mps.py --refresh
    ```
-3. Commit the generated files in `mps/`.
+3. Commit the generated files in `_mps/`.
 4. Enable GitHub Pages: **Settings → Pages → Deploy from a branch → main**.
 5. Your site is live at `https://yourusername.github.io/<repo-name>`, with a search box over all MPs by name, party, and constituency.
 
