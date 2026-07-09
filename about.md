@@ -5,8 +5,6 @@ permalink: /about/
 ---
 <div class="prose" markdown="1">
 
-https://digger260.github.io/mp-record/
-
 # About this site
 
 MP Record is a signposting service. For every current Member of Parliament, it collects direct links to their official public records — voting history, registered financial interests, declared donations, expenses, and speeches — so you can read them at the source.
