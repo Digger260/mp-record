@@ -70,14 +70,24 @@ def main():
     refresh = "--refresh" in sys.argv
     OUT_DIR.mkdir(exist_ok=True)
     created = skipped = 0
+    written = set()
     for mp in fetch_all_current_mps():
-        path = OUT_DIR / f"{slugify(mp['nameDisplayAs'])}.md"
+        stem = slugify(mp["nameDisplayAs"])
+        if stem in written:  # two current MPs share a display name
+            stem = f"{stem}-{mp['id']}"
+        written.add(stem)
+        path = OUT_DIR / f"{stem}.md"
         if path.exists() and not refresh:
             skipped += 1
             continue
         path.write_text(render(mp), encoding="utf-8")
         created += 1
         print(f"wrote {path.name}")
+    if refresh:  # remove pages for MPs no longer serving
+        for old in OUT_DIR.glob("*.md"):
+            if old.stem not in written:
+                old.unlink()
+                print(f"removed {old.name} (no longer a current MP)")
     print(f"\nDone: {created} written, {skipped} skipped (use --refresh to regenerate all).")
 
 
