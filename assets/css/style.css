@@ -198,3 +198,15 @@ main { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
   .hero { padding-top: 34px; }
   #mp-search { padding: 16px 20px 16px 50px; font-size: 16px; }
 }
+
+/* Departed MPs */
+.notice {
+  background: #FAEEDA; color: #633806; border: 1px solid #EF9F27;
+  border-radius: var(--radius); padding: 14px 18px;
+  font-size: 15px; margin: 30px 0 0;
+}
+@media (prefers-color-scheme: dark) {
+  .notice { background: #412402; color: #FAC775; border-color: #854F0B; }
+}
+.mp-card.departed { opacity: 0.75; }
+.mp-card.departed:hover { opacity: 1; }
